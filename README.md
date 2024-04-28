@@ -1,20 +1,25 @@
-<img src="https://i.pinimg.com/originals/af/16/82/af1682d0c89fe9f80360d5eb6013a62d.jpg" alt="Abdullah Yosry" style="width: 100%; max-width: 300px; border-radius: 5px;">
-
 <div align="center">
   <h1>Hello 👋 Abdullah Yosry</h1>
+  <h3>Hi, I'm Abdullah. 20 years old, pursuing my degree in Computer Science at FCIS ASU, with a keen interest in Frontend Development.</h3>
 </div>
 
-I'm a 20-year-old software engineer based in Egypt, specializing in frontend development. I'm currently pursuing my Computer Science degree at Ain-Shams University (ASU), where I'm honing my skills and knowledge in the ever-evolving tech landscape.
-
-- 🔭 I’m currently working on this page.
-- 💬 Ask me about Front-End
-- 📫 How to reach me:
-  - <a href="https://github.com/abdullhss"><img src="https://img.icons8.com/color/48/000000/github--v1.png" alt="GitHub"></a>
-  - <a href="https://www.linkedin.com/in/abdullah-yosry/"><img src="https://img.icons8.com/color/48/000000/linkedin-circled--v1.png" alt="LinkedIn"></a>
-  - <a href="mailto:abdullh2004ss@gmail.com"><img src="https://img.icons8.com/color/48/000000/gmail--v1.png" alt="Gmail"></a>
+<div align="center">
+  <div style="display: inline-block; max-width: 300px;">
+    <img src="https://i.pinimg.com/originals/af/16/82/af1682d0c89fe9f80360d5eb6013a62d.jpg" alt="Abdullah Yosry" style="width: 100%; border-radius: 5px;">
+  </div>
+  <div style="display: inline-block; vertical-align: top;">
+    <p>
+      🔭 I’m currently working on this page.<br>
+      💬 Ask me about Front-End<br>
+      📫 How to reach me:
+    </p>
+    <a href="https://github.com/abdullhss"><img src="https://img.icons8.com/color/48/000000/github--v1.png" alt="GitHub"></a>
+    <a href="https://www.linkedin.com/in/abdullah-yosry/"><img src="https://img.icons8.com/color/48/000000/linkedin-circled--v1.png" alt="LinkedIn"></a>
+    <a href="mailto:abdullh2004ss@gmail.com"><img src="https://img.icons8.com/color/48/000000/gmail--v1.png" alt="Gmail"></a>
+  </div>
+</div>
 
 ### 🚀 Languages & Tools
-
 #### Programming Languages:
 ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=ffffff)
 ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=ffffff)
@@ -35,4 +40,3 @@ I'm a 20-year-old software engineer based in Egypt, specializing in frontend dev
 ![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&logoColor=ffffff)
 ![Postman](https://img.shields.io/badge/-Postman-FF6C37?style=flat-square&logo=postman&logoColor=ffffff)
 ![Figma](https://img.shields.io/badge/-Figma-F24E1E?style=flat-square&logo=figma&logoColor=ffffff)
-
