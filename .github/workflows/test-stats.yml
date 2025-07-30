@@ -1,0 +1,46 @@
+name: Test GitHub Stats Generation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create stats directory
+        run: mkdir -p stats
+
+      - name: Test GitHub Stats API
+        run: |
+          echo "Testing GitHub Stats API..."
+          
+          # Test the API endpoints
+          echo "Testing main stats endpoint..."
+          curl -s "https://github-readme-stats.vercel.app/api?username=abdullhss&show_icons=true&theme=react&hide_border=true" \
+            -o stats/test-github-stats.svg
+          
+          echo "Testing top languages endpoint..."
+          curl -s "https://github-readme-stats.vercel.app/api/top-langs/?username=abdullhss&layout=compact&theme=react&hide_border=true" \
+            -o stats/test-top-langs.svg
+          
+          echo "Files generated:"
+          ls -la stats/
+          
+          echo "File contents (first 100 chars):"
+          head -c 100 stats/test-github-stats.svg
+          echo ""
+          head -c 100 stats/test-top-langs.svg
+          echo ""
+
+      - name: Commit test files
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add stats/test-*.svg
+          git commit -m "🧪 Test GitHub stats generation" || echo "No changes to commit"
+          git push || echo "No changes to push" 

@@ -14,8 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Create stats directory
+        run: mkdir -p stats
+
       - name: Generate GitHub Stats
-        uses: anuraghazra/github-readme-stats@6d9f3e6f4a4fcf9d7a60e88b0f21c5b56c2c3d2d
+        uses: anuraghazra/github-readme-stats@v1
         with:
           username: abdullhss
           token: ${{ secrets.GH_TOKEN }}
@@ -31,7 +34,7 @@ jobs:
           output: stats/github-stats.svg
 
       - name: Generate Top Languages
-        uses: anuraghazra/github-readme-stats@6d9f3e6f4a4fcf9d7a60e88b0f21c5b56c2c3d2d
+        uses: anuraghazra/github-readme-stats@v1
         with:
           username: abdullhss
           token: ${{ secrets.GH_TOKEN }}
@@ -43,9 +46,29 @@ jobs:
           layout: compact
           output: stats/top-langs.svg
 
+      - name: Check if files were generated
+        run: |
+          echo "Checking generated files..."
+          ls -la stats/
+          if [ ! -f "stats/github-stats.svg" ]; then
+            echo "Error: github-stats.svg was not generated"
+            exit 1
+          fi
+          if [ ! -f "stats/top-langs.svg" ]; then
+            echo "Error: top-langs.svg was not generated"
+            exit 1
+          fi
+          echo "All files generated successfully!"
+
       - name: Commit and push changes
         run: |
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           git add stats/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "♻️ Update GitHub stats" && git push)
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "♻️ Update GitHub stats"
+            git push
+            echo "Changes committed and pushed successfully!"
+          fi

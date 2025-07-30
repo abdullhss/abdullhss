@@ -1,0 +1,52 @@
+name: Update GitHub Stats (Backup Method)
+
+on:
+  workflow_dispatch: 
+  schedule:
+    - cron: '0 2 * * *'  # Run 2 hours after main workflow
+
+jobs:
+  update-stats-backup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create stats directory
+        run: mkdir -p stats
+
+      - name: Generate GitHub Stats via API
+        run: |
+          echo "Generating GitHub stats via API..."
+          
+          # Generate main stats
+          curl -s "https://github-readme-stats.vercel.app/api?username=abdullhss&show_icons=true&count_private=true&include_all_commits=true&theme=react&hide_border=true&bg_color=0D1117&title_color=00D8FF&icon_color=00D8FF&text_color=ffffff" \
+            -o stats/github-stats.svg
+          
+          # Generate top languages
+          curl -s "https://github-readme-stats.vercel.app/api/top-langs/?username=abdullhss&layout=compact&theme=react&hide_border=true&bg_color=0D1117&title_color=00D8FF&text_color=ffffff" \
+            -o stats/top-langs.svg
+          
+          echo "Stats generated successfully!"
+
+      - name: Verify files
+        run: |
+          echo "Verifying generated files..."
+          ls -la stats/
+          file stats/github-stats.svg
+          file stats/top-langs.svg
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add stats/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "♻️ Update GitHub stats (backup method)"
+            git push
+            echo "Changes committed and pushed successfully!"
+          fi 
