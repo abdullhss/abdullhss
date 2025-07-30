@@ -1,0 +1,27 @@
+name: Update GitHub Stats in README
+
+on:
+  workflow_dispatch: 
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate GitHub Stats (cached image)
+        run: |
+          mkdir -p stats
+          curl "https://github-readme-stats.vercel.app/api?username=abdullhss&show_icons=true&count_private=true&include_all_commits=true&theme=react&hide_border=true&bg_color=0D1117&title_color=00D8FF&icon_color=00D8FF&text_color=ffffff" -H "Authorization: token ${{ secrets.GH_TOKEN }}" -o stats/github-stats.svg
+          curl "https://github-readme-stats.vercel.app/api/top-langs/?username=abdullhss&layout=compact&theme=react&hide_border=true&bg_color=0D1117&title_color=00D8FF&text_color=ffffff" -H "Authorization: token ${{ secrets.GH_TOKEN }}" -o stats/top-langs.svg
+
+      - name: Commit generated stats
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add stats/*
+          git commit -m "♻️ Update cached GitHub stats" || echo "No changes to commit"
+          git push
