@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Generate GitHub Stats
-        uses: anuraghazra/github-readme-stats@v1
+        uses: anuraghazra/github-readme-stats@6d9f3e6f4a4fcf9d7a60e88b0f21c5b56c2c3d2d
         with:
           username: abdullhss
           token: ${{ secrets.GH_TOKEN }}
@@ -31,7 +31,7 @@ jobs:
           output: stats/github-stats.svg
 
       - name: Generate Top Languages
-        uses: anuraghazra/github-readme-stats@v1
+        uses: anuraghazra/github-readme-stats@6d9f3e6f4a4fcf9d7a60e88b0f21c5b56c2c3d2d
         with:
           username: abdullhss
           token: ${{ secrets.GH_TOKEN }}
